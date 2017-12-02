@@ -66,57 +66,117 @@ body {
       height: calc(100% - 136px); }
       body > .page > .main > .center {
         position: absolute;
-        top: 50%;
-        left: 50%;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
         text-align: center;
-        transform: translate(-50%, -50%); }
-        body > .page > .main > .center > .username {
-          padding-bottom: 40px;
-          font-size: 28px; }
-        body > .page > .main > .center > .piggyHolder {
-          width: 311px;
-          height: 126px; }
-          body > .page > .main > .center > .piggyHolder > .piggy {
-            width: 647px;
-            height: 261px;
-            transform: scale(0.48);
-            transform-origin: top left; }
-            body > .page > .main > .center > .piggyHolder > .piggy:before {
-              content: '';
-              display: block;
-              position: absolute;
-              width: 100%;
-              height: 100%;
-              background: url(../img/schweinchen_main_bg-green.svg); }
-            body > .page > .main > .center > .piggyHolder > .piggy:after {
-              content: '';
-              display: block;
-              position: absolute;
-              width: 100%;
-              height: 100%;
-              background: url(../img/schweinchen_main.svg); }
-        body > .page > .main > .center > .creditTitle {
-          padding: 20px 0 10px 0; }
-        body > .page > .main > .center > .credit {
-          position: relative; }
-          body > .page > .main > .center > .credit > .amount {
+        display: flex;
+        align-items: center;
+        justify-content: center; }
+        body > .page > .main > .center.main {
+          transition: opacity 0.5s, transform 0.5s; }
+          body > .page > .main > .center.main > .content > .username {
+            padding-bottom: 40px;
             font-size: 28px; }
-          body > .page > .main > .center > .credit > .button {
+          body > .page > .main > .center.main > .content > .piggyHolder {
+            width: 311px;
+            height: 126px; }
+            body > .page > .main > .center.main > .content > .piggyHolder > .piggy {
+              width: 647px;
+              height: 261px;
+              transform: scale(0.48);
+              transform-origin: top left; }
+              body > .page > .main > .center.main > .content > .piggyHolder > .piggy:before {
+                content: '';
+                display: block;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: url(../img/schweinchen_main_bg-green.svg); }
+              body > .page > .main > .center.main > .content > .piggyHolder > .piggy:after {
+                content: '';
+                display: block;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: url(../img/schweinchen_main.svg); }
+          body > .page > .main > .center.main > .content > .creditTitle {
+            padding: 20px 0 10px 0; }
+          body > .page > .main > .center.main > .content > .credit {
+            position: relative; }
+            body > .page > .main > .center.main > .content > .credit > .amount {
+              font-size: 28px; }
+            body > .page > .main > .center.main > .content > .credit > .button {
+              position: absolute;
+              top: 0;
+              width: 33px;
+              height: 33px;
+              border-radius: 30px;
+              border: 2px solid black;
+              font-size: 36px; }
+              body > .page > .main > .center.main > .content > .credit > .button.minus {
+                left: 20px; }
+              body > .page > .main > .center.main > .content > .credit > .button.plus {
+                right: 20px; }
+          body > .page > .main > .center.main > .content > .details {
+            margin-top: 10px; }
+          body > .page > .main > .center.main.disabled {
+            opacity: 0;
+            transform: scale(0.5); }
+        body > .page > .main > .center.add {
+          opacity: 0;
+          pointer-events: none;
+          transform: scale(1.5);
+          transition: opacity 0.5s, transform 0.5s; }
+          body > .page > .main > .center.add > .content > .title {
+            padding-bottom: 40px;
+            font-size: 28px; }
+          body > .page > .main > .center.add > .content > .input {
+            width: 200px; }
+            body > .page > .main > .center.add > .content > .input > .plus {
+              font-size: 30px; }
+            body > .page > .main > .center.add > .content > .input > .amount {
+              width: 100px;
+              height: 32px;
+              padding-top: 10px;
+              border: none;
+              border-bottom: 2px solid black;
+              font-family: 'Luckiest Guy';
+              font-size: 28px;
+              text-align: right;
+              color: #333; }
+          body > .page > .main > .center.add > .content > .comment > .title {
+            margin: 20px 0 10px 0; }
+          body > .page > .main > .center.add > .content > .comment > input {
+            border: none;
+            border-bottom: 2px solid black;
+            font-family: 'Luckiest Guy';
+            font-size: 20px;
+            color: #333; }
+          body > .page > .main > .center.add > .content > .check {
             position: absolute;
-            top: 0;
-            width: 30px;
-            height: 30px;
+            left: 50%;
+            margin-top: 20px;
+            width: 33px;
+            height: 33px;
             border-radius: 30px;
             border: 2px solid black;
-            font-size: 36px; }
-            body > .page > .main > .center > .credit > .button.minus {
-              left: 20px; }
-            body > .page > .main > .center > .credit > .button.plus {
-              right: 20px; }
-        body > .page > .main > .center > .details {
-          margin-top: 10px; }
+            transform: translateX(-50%); }
+            body > .page > .main > .center.add > .content > .check:before {
+              content: '';
+              display: block;
+              margin: 3px 0 0 3px;
+              background: url(../img/check.svg);
+              width: 108px;
+              height: 120px;
+              transform: scale(0.18);
+              transform-origin: top left; }
+          body > .page > .main > .center.add.enabled {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto; }
     body > .page > .settings {
-      display: none;
       position: absolute;
       top: calc(100% - 20px);
       width: 100%;
@@ -160,6 +220,8 @@ body {
         background: url(../img/settings.svg) no-repeat center center;
         background-size: 26px 26px;
         transform: translateX(-50%); }
+        body > .page > .settings > .bottom:before {
+          content: ''; }
       body > .page > .settings.opened {
         top: -50px; }
 

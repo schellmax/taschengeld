@@ -2,9 +2,11 @@
 <html lang="de-AT">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Mein erstes Taschengeld</title>
         <link rel="stylesheet" href="css/index.css" />
         <script src="thirdparty/jquery-3.2.1.min.js"></script>
+        <script src="js/credit.js"></script>
         <script src="js/index.js"></script>
     </head>
     <body>
@@ -24,18 +26,34 @@
                 </div>
             </div>
             <div class="main">
-                <div class="center">
-                    <p class="username">Lena</p>
-                    <div class="piggyHolder">
-                        <div class="piggy"></div>
+                <div class="center main">
+                    <div class="content">
+                        <p class="username">Lena</p>
+                        <div class="piggyHolder">
+                            <div class="piggy"></div>
+                        </div>
+                        <p class="creditTitle">Guthaben</p>
+                        <div class="credit">
+                            <p class="amount"></p>
+                            <div class="button minus">-</div>
+                            <div class="button plus">+</div>
+                        </div>
+                        <p class="details">Details</p>
                     </div>
-                    <p class="creditTitle">Guthaben</p>
-                    <div class="credit">
-                        <p class="amount">0,00</p>
-                        <div class="button minus">-</div>
-                        <div class="button plus">+</div>
+                </div>
+                <div class="center add">
+                    <div class="content">
+                        <p class="title">Betrag aufbuchen</p>
+                        <div class="input">
+                            <span class="plus">+</span>
+                            <input type="number" class="amount" placeholder="0.00" />
+                        </div>
+                        <div class="comment">
+                            <p class="title">Kommentar</p>
+                            <input type="text" class="comment" placeholder="Taschengeld"/>
+                        </div>
+                        <div class="check"></div>
                     </div>
-                    <p class="details">Details</p>
                 </div>
             </div>
             <div class="settings">
