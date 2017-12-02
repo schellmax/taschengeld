@@ -1,19 +1,20 @@
 (function() {
     'use strict';
 
-    var $add, $main, $amount, $comment;
+    var $widget, $main, $amount, $comment;
     var resultDef;
+    var isAddition;
 
     $(document).ready(function(){
         $main = $('body>.page>.main>.center.main');
-        $add = $('body>.page>.main>.center.add');
+        $widget = $('body>.page>.main>.center.creditWidget');
 
-        $amount = $add.find('input.amount');
-        $comment = $add.find('input.comment');
+        $amount = $widget.find('input.amount');
+        $comment = $widget.find('input.comment');
 
-        $add.find('.content>.check').on('click', function(){
+        $widget.find('.content>.check').on('click', function(){
             $main.removeClass('disabled');
-            $add.removeClass('enabled');
+            $widget.removeClass('enabled');
 
             // note: ios won't accept ',' signs, only '.' (otherwise val() returns empty string)
             var amount = $amount.val();
@@ -23,7 +24,7 @@
 
             if(amount !== '' && amount !== 0 && !isNaN(amount)) {
                 resultDef.resolve({
-                    sum: amount,
+                    sum: isAddition ? amount : amount * -1,
                     comment: $comment.text()
                 });
             } else {
@@ -36,10 +37,20 @@
     });
 
     window.Credit = {
-        renderAdd: function() {
+        render: function(_isAddition) {
             resultDef = $.Deferred();
+
+            isAddition = _isAddition;
             $main.addClass('disabled');
-            $add.addClass('enabled');
+            $widget.addClass('enabled');
+            $widget.removeClass('addition');
+            $widget.removeClass('subtraction');
+            if(isAddition) {
+                $widget.addClass('addition');
+            } else {
+                $widget.addClass('subtraction');
+            }
+
             return resultDef;
         }
     }

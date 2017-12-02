@@ -31,6 +31,8 @@
         $amount.text(stringParts[0] + ',' + stringParts[1]);
     }
 
+
+
     $(document).ready(function(){
 
         var $plus = $('.button.plus');
@@ -39,15 +41,9 @@
 
         renderCredit(activeUser.credit);
 
-        $minus.on('click', function(){
-            activeUser.credit -= 1;
-            localStorage.setItem('data', JSON.stringify(data));
-            $amount.text(activeUser.credit + ',00');
-        });
-
-        $plus.on('click', function(){
-            var addition = Credit.renderAdd();
-            addition.done(function(result){
+        function showCreditWidget(isAddition) {
+            var creditWidget = Credit.render(isAddition);
+            creditWidget.done(function(result){
                 console.log('result', result);
                 activeUser.credit += result.sum;
                 activeUser.transfers.push({
@@ -58,9 +54,17 @@
                 localStorage.setItem('data', JSON.stringify(data));
                 renderCredit(activeUser.credit);
             });
-            addition.fail(function(){
+            creditWidget.fail(function(){
                 console.log('no input');
             });
+        }
+
+        $minus.on('click', function(){
+            showCreditWidget(false);
+        });
+
+        $plus.on('click', function(){
+            showCreditWidget(true);
         });
     });
 
