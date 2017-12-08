@@ -131,33 +131,52 @@ body {
           pointer-events: none;
           transform: scale(1.5);
           transition: opacity 0.5s, transform 0.5s; }
-          body > .page > .main > .center.creditWidget > .content > .title {
+          body > .page > .main > .center.creditWidget > form > .content > .title {
             font-size: 28px; }
-          body > .page > .main > .center.creditWidget > .content > .input {
+          body > .page > .main > .center.creditWidget > form > .content > .input {
             margin-top: 30px; }
-            body > .page > .main > .center.creditWidget > .content > .input > .sign {
+            body > .page > .main > .center.creditWidget > form > .content > .input > * {
+              display: inline-block; }
+            body > .page > .main > .center.creditWidget > form > .content > .input > .sign {
               font-size: 30px; }
-            body > .page > .main > .center.creditWidget > .content > .input > .amount {
-              width: 100px;
+            body > .page > .main > .center.creditWidget > form > .content > .input input::-webkit-outer-spin-button,
+            body > .page > .main > .center.creditWidget > form > .content > .input input::-webkit-inner-spin-button {
+              /* display: none; <- Crashes Chrome on hover */
+              -webkit-appearance: none;
+              margin: 0;
+              /* <-- Apparently some margin are still there even though it's hidden */ }
+            body > .page > .main > .center.creditWidget > form > .content > .input > input {
               height: 32px;
               padding-top: 10px;
               border: none;
               border-bottom: 2px solid black;
+              border-radius: 0;
+              outline: none;
               font-family: 'Luckiest Guy';
               font-size: 28px;
-              text-align: right;
-              color: #333; }
-          body > .page > .main > .center.creditWidget > .content > .comment {
+              line-height: 32px;
+              text-align: right; }
+              body > .page > .main > .center.creditWidget > form > .content > .input > input.major {
+                width: 55px; }
+              body > .page > .main > .center.creditWidget > form > .content > .input > input.minor {
+                width: 37px; }
+            body > .page > .main > .center.creditWidget > form > .content > .input > .comma {
+              font-family: 'Luckiest Guy';
+              font-size: 28px;
+              line-height: 32px; }
+          body > .page > .main > .center.creditWidget > form > .content > .comment {
             margin-top: 30px; }
-            body > .page > .main > .center.creditWidget > .content > .comment > .title {
+            body > .page > .main > .center.creditWidget > form > .content > .comment > .title {
               margin: 20px 0 10px 0; }
-            body > .page > .main > .center.creditWidget > .content > .comment > input {
+            body > .page > .main > .center.creditWidget > form > .content > .comment > input {
               border: none;
               border-bottom: 2px solid black;
+              border-radius: 0;
+              outline: none;
               font-family: 'Luckiest Guy';
               font-size: 20px;
-              color: #333; }
-          body > .page > .main > .center.creditWidget > .content > .check {
+              line-height: 22px; }
+          body > .page > .main > .center.creditWidget > form > .content > .check {
             position: absolute;
             left: 50%;
             margin-top: 30px;
@@ -166,7 +185,7 @@ body {
             border-radius: 30px;
             border: 2px solid black;
             transform: translateX(-50%); }
-            body > .page > .main > .center.creditWidget > .content > .check:before {
+            body > .page > .main > .center.creditWidget > form > .content > .check:before {
               content: '';
               display: block;
               margin: 5px 0 0 5px;
@@ -180,9 +199,9 @@ body {
             transform: scale(1);
             pointer-events: auto; }
           body > .page > .main > .center.creditWidget.addition ._subtraction {
-            display: none; }
+            display: none !important; }
           body > .page > .main > .center.creditWidget.subtraction ._addition {
-            display: none; }
+            display: none !important; }
     body > .page > .settings {
       position: absolute;
       top: calc(100% - 20px);

@@ -1,38 +1,54 @@
 (function() {
     'use strict';
 
-    var $widget, $main, $amount, $comment;
+    var $widget, $form, $main, $major, $minor, $comment;
     var resultDef;
     var isAddition;
 
     $(document).ready(function(){
         $main = $('body>.page>.main>.center.main');
         $widget = $('body>.page>.main>.center.creditWidget');
+        $form = $widget.find('>form');
 
-        $amount = $widget.find('input.amount');
+        $major = $widget.find('input.major');
+        $minor = $widget.find('input.minor');
         $comment = $widget.find('input.comment');
 
-        $widget.find('.content>.check').on('click', function(){
-            $main.removeClass('disabled');
-            $widget.removeClass('enabled');
-
-            // note: ios won't accept ',' signs, only '.' (otherwise val() returns empty string)
-            var amount = $amount.val();
-            amount = amount.replace(',', '.');
-            amount = amount.replace(/[^0-9.]/g, ''); // https://stackoverflow.com/a/1862149/176140
-            amount = parseFloat(amount);
-
-            if(amount !== '' && amount !== 0 && !isNaN(amount)) {
-                resultDef.resolve({
-                    sum: isAddition ? amount : amount * -1,
-                    comment: $comment.text()
-                });
-            } else {
-                resultDef.reject();
+        $minor.on('blur', function(){
+            var amount = $minor.val();
+            amount = parseInt(amount); // also gets rid '.' signs (possible to enter in some browsers)
+            if(amount < 10) {
+                // note: when using .val() on input, we always get a string, so it's ok to build one here
+                amount = '0' + amount;
             }
 
-            $amount.val('');
-            $comment.val('');
+            $minor.val(amount);
+        });
+
+        $form.on('submit', function(e){
+            var major = $major.val();
+            var minor = $minor.val();
+
+            if(major === '') {
+                major = 0; // prevents 'NaN' when using parseFloat below (in case minor also is an empty string)
+            }
+            var sum = parseFloat(major + '.' + minor);
+
+            resultDef.resolve({
+                sum: isAddition ? sum : -sum,
+                comment: $comment.val()
+            });
+
+            $main.removeClass('disabled');
+            $widget.removeClass('enabled');
+            $major.val('').blur();
+            $minor.val('').blur();
+            $comment.val('').blur();
+            e.preventDefault();
+        });
+
+        $widget.find('.content>.check').on('click', function(){
+            $form.submit();
         });
     });
 
@@ -50,6 +66,7 @@
             } else {
                 $widget.addClass('subtraction');
             }
+            $major.focus();
 
             return resultDef;
         }
