@@ -76,56 +76,103 @@ body {
         justify-content: center; }
         body > .page > .main > .center.main {
           transition: opacity 0.5s, transform 0.5s; }
-          body > .page > .main > .center.main > .content > .username {
-            padding-bottom: 40px;
-            font-size: 28px; }
-          body > .page > .main > .center.main > .content > .piggyHolder {
-            width: 311px;
-            height: 126px; }
-            body > .page > .main > .center.main > .content > .piggyHolder > .piggy {
-              width: 647px;
-              height: 261px;
-              transform: scale(0.48);
-              transform-origin: top left; }
-              body > .page > .main > .center.main > .content > .piggyHolder > .piggy:before {
-                content: '';
-                display: block;
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                background: url(../img/schweinchen_main_bg-green.svg); }
-              body > .page > .main > .center.main > .content > .piggyHolder > .piggy:after {
-                content: '';
-                display: block;
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                background: url(../img/schweinchen_main.svg); }
-          body > .page > .main > .center.main > .content > .creditTitle {
-            padding: 20px 0 10px 0; }
-          body > .page > .main > .center.main > .content > .credit {
+          body > .page > .main > .center.main > .content {
             position: relative; }
-            body > .page > .main > .center.main > .content > .credit > .amount {
-              font-size: 28px; }
-            body > .page > .main > .center.main > .content > .credit > .button {
+            body > .page > .main > .center.main > .content > .coinHolder {
               position: absolute;
-              top: 0;
-              width: 33px;
-              height: 33px;
-              border-radius: 30px;
-              border: 2px solid black;
-              font-size: 36px; }
-              body > .page > .main > .center.main > .content > .credit > .button.minus {
-                left: 20px;
-                padding: 3px 0 0 0; }
-              body > .page > .main > .center.main > .content > .credit > .button.plus {
-                right: 20px;
-                padding: 1px 0 0 1px; }
-          body > .page > .main > .center.main > .content > .details {
-            margin-top: 10px; }
+              z-index: 1;
+              top: -72px;
+              left: 151px;
+              width: 30px;
+              height: 154px;
+              background: rgba(255, 0, 0, 0);
+              overflow: hidden; }
+              body > .page > .main > .center.main > .content > .coinHolder > .coin {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 30px;
+                height: 30px;
+                border-radius: 30px;
+                background: yellow;
+                border: 3px solid black;
+                opacity: 0; }
+            body > .page > .main > .center.main > .content > .username {
+              padding-bottom: 40px;
+              font-size: 28px; }
+            body > .page > .main > .center.main > .content > .piggyHolder {
+              width: 311px;
+              height: 126px; }
+              body > .page > .main > .center.main > .content > .piggyHolder > .piggy {
+                position: relative;
+                width: 647px;
+                height: 261px;
+                transform: scale(0.48);
+                transform-origin: top left; }
+                body > .page > .main > .center.main > .content > .piggyHolder > .piggy > .part {
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  width: 100%;
+                  height: 100%; }
+                  body > .page > .main > .center.main > .content > .piggyHolder > .piggy > .part.bg {
+                    background: url(../img/schweinchen_main_bg-green.svg); }
+                  body > .page > .main > .center.main > .content > .piggyHolder > .piggy > .part.body.fine {
+                    background: url(../img/schweinchen_main.svg); }
+                  body > .page > .main > .center.main > .content > .piggyHolder > .piggy > .part.body.happy {
+                    opacity: 0;
+                    background: url(../img/schweinchen_main_happy.svg); }
+            body > .page > .main > .center.main > .content > .creditTitle {
+              padding: 20px 0 10px 0; }
+            body > .page > .main > .center.main > .content > .credit {
+              position: relative; }
+              body > .page > .main > .center.main > .content > .credit > .amount {
+                font-size: 28px; }
+              body > .page > .main > .center.main > .content > .credit > .button {
+                position: absolute;
+                top: 0;
+                width: 33px;
+                height: 33px;
+                border-radius: 30px;
+                border: 2px solid black;
+                font-size: 36px; }
+                body > .page > .main > .center.main > .content > .credit > .button.minus {
+                  left: 20px;
+                  padding: 3px 0 0 0; }
+                body > .page > .main > .center.main > .content > .credit > .button.plus {
+                  right: 20px;
+                  padding: 1px 0 0 1px; }
+            body > .page > .main > .center.main > .content > .details {
+              margin-top: 10px; }
           body > .page > .main > .center.main.disabled {
             opacity: 0;
             transform: scale(0.5); }
+          body > .page > .main > .center.main.happy > .content > .coinHolder > .coin {
+            transition: top 0.7s linear, opacity 0.5s linear;
+            top: 100%;
+            opacity: 1; }
+@keyframes show {
+  0% {
+    opacity: 0; }
+  20% {
+    opacity: 1; }
+  80% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+@keyframes hide {
+  0% {
+    opacity: 1; }
+  20% {
+    opacity: 0; }
+  80% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+          body > .page > .main > .center.main.happy > .content > .piggyHolder > .piggy > .part.body.fine {
+            animation: hide 2s; }
+          body > .page > .main > .center.main.happy > .content > .piggyHolder > .piggy > .part.body.happy {
+            animation: show 2s; }
         body > .page > .main > .center.creditWidget {
           opacity: 0;
           pointer-events: none;

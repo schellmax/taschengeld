@@ -37,14 +37,22 @@ body{font-family:'Luckiest Guy';
         display:flex; align-items:center; justify-content:center;
         &.main{
           transition:opacity 0.5s, transform 0.5s;
-          >.content{
+          >.content{position:relative;
+            >.coinHolder{position:absolute; z-index:1; top:-72px; left:151px; width:30px; height:154px; background:rgba(255,0,0,0); overflow:hidden;
+              >.coin{position:absolute; left:0; top:0; width:30px; height:30px; border-radius:30px; background:yellow; border:3px solid black;
+                opacity:0;
+              }
+            }
             >.username{padding-bottom:40px; font-size:28px;}
             >.piggyHolder{width:311px; height:126px;
-              >.piggy{width:647px; height:261px;
+              >.piggy{position:relative; width:647px; height:261px;
                 transform:scale(0.48);
                 transform-origin:top left;
-                &:before{content:''; display:block; position:absolute; width:100%; height:100%; background:url(../img/schweinchen_main_bg-green.svg);}
-                &:after{content:''; display:block; position:absolute; width:100%; height:100%; background:url(../img/schweinchen_main.svg);}
+                >.part{position:absolute; left:0; top:0; width:100%; height:100%;
+                  &.bg{background:url(../img/schweinchen_main_bg-green.svg);}
+                  &.body.fine{background:url(../img/schweinchen_main.svg);}
+                  &.body.happy{opacity:0; background:url(../img/schweinchen_main_happy.svg);}
+                }
               }
             }
             >.creditTitle{padding:20px 0 10px 0;}
@@ -58,6 +66,35 @@ body{font-family:'Luckiest Guy';
             >.details{margin-top:10px;}
           }
           &.disabled{opacity:0; transform:scale(0.5);}
+          &.happy{
+            >.content{
+              >.coinHolder{
+                >.coin{transition:top 0.7s linear, opacity 0.5s linear; top:100%; opacity:1;}
+              }
+              >.piggyHolder{
+                >.piggy{
+                  @keyframes show{
+                    0%{opacity:0;}
+                    20%{opacity:1;}
+                    80%{opacity:1;}
+                    100%{opacity:0;}
+                  }
+                  @keyframes hide{
+                    0%{opacity:1;}
+                    20%{opacity:0;}
+                    80%{opacity:0;}
+                    100%{opacity:1;}
+                  }
+                  >.part.body{
+                    //&.fine{transition:opacity 0s linear 2s; opacity:0;}
+                    //&.happy{transition:opacity 0s linear 2s; opacity:1;}
+                    &.fine{animation:hide 2s;}
+                    &.happy{animation:show 2s;}
+                  }
+                }
+              }
+            }
+          }
         }
         &.creditWidget{opacity:0; pointer-events:none;
           transform:scale(1.5);

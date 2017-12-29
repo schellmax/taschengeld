@@ -31,8 +31,6 @@
         $amount.text(stringParts[0] + ',' + stringParts[1]);
     }
 
-
-
     $(document).ready(function(){
 
         var $plus = $('.button.plus');
@@ -53,6 +51,14 @@
                 });
                 localStorage.setItem('data', JSON.stringify(data));
                 renderCredit(activeUser.credit);
+
+                // animate
+                if(result.sum > 0) {
+                    var $main = $('body>.page>.main>.center.main');
+                    $main.removeClass('happy');
+                    $main.width();
+                    $main.addClass('happy');
+                }
             });
             creditWidget.fail(function(){
                 console.log('no input');

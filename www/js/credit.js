@@ -34,16 +34,21 @@
             }
             var sum = parseFloat(major + '.' + minor);
 
-            resultDef.resolve({
-                sum: isAddition ? sum : -sum,
-                comment: $comment.val()
-            });
-
             $main.removeClass('disabled');
             $widget.removeClass('enabled');
+
             $major.val('').blur();
             $minor.val('').blur();
             $comment.val('').blur();
+
+            // wait until transitions finished
+            setTimeout(function(){
+                resultDef.resolve({
+                    sum: isAddition ? sum : -sum,
+                    comment: $comment.val()
+                });
+            }, 500);
+
             e.preventDefault();
         });
 
