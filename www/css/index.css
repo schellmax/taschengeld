@@ -97,16 +97,39 @@ body {
                 background: yellow;
                 border: 3px solid black;
                 opacity: 0; }
+            body > .page > .main > .center.main > .content > .coinHolder2 {
+              position: absolute;
+              z-index: 1;
+              top: 102px;
+              left: 230px;
+              width: 160px;
+              height: 83px;
+              background: rgba(255, 0, 0, 0);
+              overflow: hidden; }
+              body > .page > .main > .center.main > .content > .coinHolder2 > .coinX {
+                position: absolute;
+                left: 0;
+                top: 0; }
+                body > .page > .main > .center.main > .content > .coinHolder2 > .coinX > .coin {
+                  position: absolute;
+                  left: -30px;
+                  top: 0;
+                  width: 30px;
+                  height: 30px;
+                  border-radius: 30px;
+                  background: yellow;
+                  border: 3px solid black;
+                  opacity: 1; }
             body > .page > .main > .center.main > .content > .username {
-              padding-bottom: 40px;
+              padding-bottom: 26px;
               font-size: 28px; }
             body > .page > .main > .center.main > .content > .piggyHolder {
               width: 311px;
-              height: 126px; }
+              height: 140px; }
               body > .page > .main > .center.main > .content > .piggyHolder > .piggy {
                 position: relative;
                 width: 647px;
-                height: 261px;
+                height: 291px;
                 transform: scale(0.48);
                 transform-origin: top left; }
                 body > .page > .main > .center.main > .content > .piggyHolder > .piggy > .part {
@@ -122,6 +145,9 @@ body {
                   body > .page > .main > .center.main > .content > .piggyHolder > .piggy > .part.body.happy {
                     opacity: 0;
                     background: url(../img/schweinchen_main_happy.svg); }
+                  body > .page > .main > .center.main > .content > .piggyHolder > .piggy > .part.body.sad {
+                    opacity: 0;
+                    background: url(../img/schweinchen_main_sad.svg); }
             body > .page > .main > .center.main > .content > .creditTitle {
               padding: 20px 0 10px 0; }
             body > .page > .main > .center.main > .content > .credit {
@@ -170,9 +196,48 @@ body {
   100% {
     opacity: 1; } }
           body > .page > .main > .center.main.happy > .content > .piggyHolder > .piggy > .part.body.fine {
-            animation: hide 2s; }
+            animation: hide 1s; }
           body > .page > .main > .center.main.happy > .content > .piggyHolder > .piggy > .part.body.happy {
-            animation: show 2s; }
+            animation: show 1s; }
+@keyframes down {
+  0% {
+    top: 0; }
+  100% {
+    top: 50px; } }
+@keyframes up {
+  0% {
+    top: 53px; }
+  100% {
+    top: 0; } }
+          body > .page > .main > .center.main.sad > .content > .coinHolder2 > .coinX {
+            transition: left 1s linear;
+            left: 100%; }
+            body > .page > .main > .center.main.sad > .content > .coinHolder2 > .coinX > .coin {
+              transition: opacity 0.5s linear 0.5s;
+              opacity: 0;
+              animation: down 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.19), up 0.5s cubic-bezier(0.215, 0.61, 0.355, 1) 0.5s; }
+@keyframes show {
+  0% {
+    opacity: 0; }
+  20% {
+    opacity: 1; }
+  80% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+@keyframes hide {
+  0% {
+    opacity: 1; }
+  20% {
+    opacity: 0; }
+  80% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+          body > .page > .main > .center.main.sad > .content > .piggyHolder > .piggy > .part.body.fine {
+            animation: hide 1s; }
+          body > .page > .main > .center.main.sad > .content > .piggyHolder > .piggy > .part.body.sad {
+            animation: show 1s; }
         body > .page > .main > .center.creditWidget {
           opacity: 0;
           pointer-events: none;

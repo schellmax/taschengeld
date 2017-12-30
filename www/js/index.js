@@ -55,9 +55,15 @@
                 // animate
                 if(result.sum > 0) {
                     var $main = $('body>.page>.main>.center.main');
-                    $main.removeClass('happy');
+                    $main.removeClass('happy sad');
                     $main.width();
                     $main.addClass('happy');
+                }
+                if(result.sum < 0) {
+                    var $main = $('body>.page>.main>.center.main');
+                    $main.removeClass('happy sad');
+                    $main.width();
+                    $main.addClass('sad');
                 }
             });
             creditWidget.fail(function(){
