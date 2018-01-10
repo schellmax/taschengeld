@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <!-- spaces are truncated in ios https://stackoverflow.com/a/48174073/176140 -->
-    <name>Mein&#x2007;erstes&#x2007;Taschengeld</name>
+    <name>Mein&#x0020;erstes&#x0020;Taschengeld</name>
     <description>
         Einfaches Verwalten der ersten Ersparnisse ihres Kindes
     </description>
